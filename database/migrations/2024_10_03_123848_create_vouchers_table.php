@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->integer('discount');
-            $table->timestamp('starts_at');
-            $table->timestamp('expires_at');
+            $table->enum('status',['active','inactive'])->default('active');
+            $table->date('starts_at');
+            $table->date('expires_at');
             $table->timestamps();
         });
     }

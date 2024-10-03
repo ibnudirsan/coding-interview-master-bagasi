@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\VoucherController;
+use App\Http\Controllers\API\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,10 +36,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('voucher')->group(function () {
-        Route::get('/', [VoucherController::class, 'index']);
         Route::post('/', [VoucherController::class, 'store']);
+        Route::post('/redeem', [VoucherController::class, 'redeem']);
+        Route::get('/', [VoucherController::class, 'index']);
         Route::get('/{id}', [VoucherController::class, 'find']);
         Route::put('/{id}', [VoucherController::class, 'update']);
         Route::delete('/{id}', [VoucherController::class, 'destroy']);
     });
+});
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+   Route::prefix('transaction')->group(function () {
+        Route::post('/', [TransactionController::class, 'store']);
+   });
 });

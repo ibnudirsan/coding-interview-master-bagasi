@@ -12,6 +12,7 @@ class Voucher extends Model
     protected $fillable = [
         'code',
         'discount',
+        'status',
         'starts_at',
         'expires_at',
     ];
