@@ -35,6 +35,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('voucher')->group(function () {
+        Route::get('/', [VoucherController::class, 'index']);
         Route::post('/', [VoucherController::class, 'store']);
+        Route::get('/{id}', [VoucherController::class, 'find']);
+        Route::put('/{id}', [VoucherController::class, 'update']);
+        Route::delete('/{id}', [VoucherController::class, 'destroy']);
     });
 });

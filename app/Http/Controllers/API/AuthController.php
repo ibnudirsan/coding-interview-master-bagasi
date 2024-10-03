@@ -22,9 +22,9 @@ class AuthController extends Controller
 
                 if($validator->fails()){
                     $resultError = [
-                        'httpcode'  =>  400,
-                        'error'     =>  true,
-                        'data'      =>  [
+                        'code'  =>  400,
+                        'error' =>  true,
+                        'data'  =>  [
                             'message'   =>'Validation error.',
                             'errors'    =>$validator->errors(),
                         ],
@@ -38,20 +38,20 @@ class AuthController extends Controller
                     ]);
 
                     $result = [
-                        'httpcode'  =>  200,
-                        'error'     =>  false,
-                        'data'      =>  [
-                            'message'   =>'User created successfully.',
+                        'code'  =>  200,
+                        'error' =>  false,
+                        'data'  =>  [
+                            'message' =>'User created successfully.',
                         ],
                     ];
                         return response()->json($result,200);
 
         } catch (\Throwable $th) {
             $resultError = [
-                'httpcode'  =>  500,
-                'error'     =>  true,
-                'data'      =>  [
-                    'message'   =>'Failed to create user.',
+                'code'  =>  500,
+                'error' =>  true,
+                'data'  =>  [
+                    'message' =>'Failed to create user.',
                 ],
             ];
                 return response()->json($resultError,500);
@@ -68,11 +68,11 @@ class AuthController extends Controller
             
                 if($validator->fails()){
                     $resultError = [
-                        'httpcode'  =>  400,
-                        'error'     =>  true,
-                        'data'      =>  [
-                            'message'   =>'Validation error.',
-                            'errors'    =>$validator->errors(),
+                        'code'  =>  400,
+                        'error' =>  true,
+                        'data'  =>  [
+                            'message' =>'Validation error.',
+                            'errors'  =>$validator->errors(),
                         ],
                     ];
                         return response()->json($resultError,400);
@@ -102,10 +102,10 @@ class AuthController extends Controller
                             return response()->json($result,200);
                 } else {
                         $resultError = [
-                            'httpcode'  =>  400,
-                            'error'     =>  true,
-                            'data'      =>  [
-                                'message'   =>'Account is not registered.',
+                            'code'  =>  400,
+                            'error' =>  true,
+                            'data'  =>  [
+                                'message' =>'Account is not registered.',
                             ],
                         ];
                             return response()->json($resultError,400);

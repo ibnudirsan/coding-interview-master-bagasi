@@ -15,7 +15,7 @@ class ProductController extends Controller
             $product = Product::select('id','name','price','description')->latest()->get();
             if(!$product->count()){
                 $resultError = [
-                    'httpcode'  =>  404,
+                    'code'      =>  404,
                     'error'     =>  true,
                     'data'      =>  [
                         'message'   =>'Product not found.',
@@ -24,7 +24,7 @@ class ProductController extends Controller
                     return response()->json($resultError,404);
             }
                 $result = [
-                    'httpcode'  =>  200,
+                    'code'      =>  200,
                     'error'     =>  false,
                     'data'      =>  [
                         'products'  =>  $product,
@@ -54,7 +54,7 @@ class ProductController extends Controller
 
             if($validator->fails()){
                 $resultError = [
-                    'httpcode'  =>  400,
+                    'code'      =>  400,
                     'error'     =>  true,
                     'data'      =>  [
                         'message'   =>'Validation error.',
@@ -70,7 +70,7 @@ class ProductController extends Controller
                 ]);
 
                 $result = [
-                    'httpcode'  =>  200,
+                    'code'      =>  200,
                     'error'     =>  false,
                     'data'      =>  [
                         'message'   =>'Product created successfully.',
@@ -95,19 +95,19 @@ class ProductController extends Controller
             $product = Product::select('id','name','price','description')->find($id);
             if(!$product){
                 $resultError = [
-                    'httpcode'  =>  404,
-                    'error'     =>  true,
-                    'data'      =>  [
+                    'code'  =>  404,
+                    'error' =>  true,
+                    'data'  =>  [
                         'message'   =>'Product not found.',
                     ],
                 ];
                     return response()->json($resultError,404);
             }
                 $result = [
-                    'httpcode'  =>  200,
-                    'error'     =>  false,
-                    'data'      =>  [
-                        'product'   =>  $product,
+                    'code'  =>  200,
+                    'error' =>  false,
+                    'data'  =>  [
+                        'product' =>  $product,
                     ]
                 ];
                     return response()->json($result,200);
@@ -133,11 +133,11 @@ class ProductController extends Controller
 
         if($validator->fails()){
             $resultError = [
-                'httpcode'  =>  400,
-                'error'     =>  true,
-                'data'      =>  [
-                    'message'   =>'Validation error.',
-                    'errors'    =>$validator->errors(),
+                'code'  =>  400,
+                'error' =>  true,
+                'data'  =>  [
+                    'message' =>'Validation error.',
+                    'errors'  =>$validator->errors(),
                 ],
             ];
                 return response()->json($resultError,400);
@@ -147,10 +147,10 @@ class ProductController extends Controller
             $product = Product::find($id);
             if(!$product){
                 $resultError = [
-                    'httpcode'  =>  404,
-                    'error'     =>  true,
-                    'data'      =>  [
-                        'message'   =>'Product not found.',
+                    'code'  =>  404,
+                    'error' =>  true,
+                    'data'  =>  [
+                        'message' =>'Product not found.',
                     ],
                 ];
                     return response()->json($resultError,404);
@@ -161,10 +161,10 @@ class ProductController extends Controller
                     'description'   =>  $request->description,
                 ]);
                 $result = [
-                    'httpcode'  =>  200,
-                    'error'     =>  false,
-                    'data'      =>  [
-                        'message'   =>'Product updated successfully.',
+                    'code'  => 200,
+                    'error' =>  false,
+                    'data'  =>  [
+                        'message' =>'Product updated successfully.',
                     ],
                 ];
                     return response()->json($result,200);
@@ -186,17 +186,17 @@ class ProductController extends Controller
             $product = Product::find($id);
             if(!$product){
                 $resultError = [
-                    'httpcode'  =>  404,
-                    'error'     =>  true,
-                    'data'      =>  [
-                        'message'   =>'Product not found.',
+                    'code'  =>404,
+                    'error' =>true,
+                    'data'  =>[
+                        'message' =>'Product not found.',
                     ],
                 ];
                     return response()->json($resultError,404);
             }
                 $product->delete();
                 $result = [
-                    'httpcode'  =>  200,
+                    'code'  =>  200,
                     'error'     =>  false,
                     'data'      =>  [
                         'message'   =>'Product deleted successfully.',

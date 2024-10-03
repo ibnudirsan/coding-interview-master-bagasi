@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $result = [
+        'httpcode'  =>  200,
+        'error'     =>  false,
+        'data'      =>  [
+            'message'   =>'Welcome to Service API',
+        ]
+    ];
+    return response()->json($result,200);
 });
